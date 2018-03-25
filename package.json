@@ -1,0 +1,35 @@
+{
+  "name": "jwt-server",
+  "description": "A simple JSON Web Token Auth Server",
+  "author": "Anthony Cook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-sample"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.11",
+    "mongoose-validator": "^2.0.2",
+    "nodemon": "^1.17.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1"
+  },
+  "scripts": {
+    "dev": "nodemon -r dotenv/config -r babel-register -r babel-polyfill ./src/index.js",
+    "build": "babel src -d dist",
+    "start": "node ./dist/index.js"
+  }
+}
