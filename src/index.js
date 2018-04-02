@@ -1,6 +1,6 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use('/api', require('./routes/user'));
 // ERROR HANDLING
 // ==============================================
 app.use((error, req, res, next) => {
-  res.status(500).json({ error: error.message });
+  res.status(error.code).json({ errors: error.message });
 });
 
 // START

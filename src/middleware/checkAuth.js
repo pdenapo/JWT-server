@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
   try {
@@ -8,6 +8,6 @@ module.exports = async (req, res, next) => {
     req.userId = decoded.id;
     next();
   } catch (error) {
-    return next({ message: 'Incorrect login details' });
+    return next({ code: 401, message: 'Invalid user token' });
   }
 };

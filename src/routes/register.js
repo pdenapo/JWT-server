@@ -1,43 +1,30 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+const express = require('express');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
 // MODELS
 // ==============================================
-import User from '../models/user';
+const User = require('../models/user');
 
 // ROUTE
 // ==============================================
 router.post('/register', async (req, res, next) => {
   try {
-    if (!req.body.password) {
-      return next({ message: 'Password field is required' });
-    }
-    if (req.body.password.length < 6) {
-      return next({
-        message: 'Your password must be at least 6 characters long'
-      });
-    }
-
-    const hashedPassword = await bcrypt.hashSync(req.body.password, 10);
-
     const user = await User.create({
-      name: req.body.name,
-      username: req.body.username,
-      password: hashedPassword
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
     });
 
-    const token = await jwt.sign({ id: user._id }, process.env.SECRET, {
+    const payload = { id: user._id, role: user.role };
+    const token = await jwt.sign(payload, process.env.SECRET, {
       expiresIn: 86400
     });
 
     res.status(200).json({ token: token });
   } catch (error) {
-    if (error.code === 11000) {
-      return next({ message: 'Username not available' });
-    }
     return next(error);
   }
 });

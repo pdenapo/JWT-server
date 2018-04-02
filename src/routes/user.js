@@ -1,10 +1,9 @@
-import express from 'express';
-
+const express = require('express');
 const router = express.Router();
 
 // MODELS
 // ==============================================
-import User from '../models/user';
+const User = require('../models/user');
 
 // MIDDLEWARE
 // ==============================================
@@ -17,8 +16,9 @@ router.get('/user', checkAuth, async (req, res, next) => {
     const user = await User.findOne({ _id: req.userId });
 
     res.status(200).json({
-      name: user.name,
-      username: user.username
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   } catch (error) {
     return next(error);

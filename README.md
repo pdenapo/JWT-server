@@ -5,10 +5,13 @@ This is an express server that allows for user registertion and login via JSON w
 This code is meant to be a drop in service for those who want to implement JWT authentication quickly, so they can focus on their front-end development.
 
 ## Features
-* Password hasing/salting with bcrypt
-*  MongoDB database support
-*  Server-side data validation
-*  User registration/login
+*  User registration
+*  User login
+*  User profiles
+*  User roles
+*  Password hashing/salting with bcrypt
+*  Server-side validation
+*  Supports MongoDB via Mongoose
 
 
 ## Installation
@@ -32,11 +35,15 @@ Finally....
 npm run dev
 ```
 
-## Production
+### Production
 
 Add your environment variables as above but for your production server (e.g Heroku CLI/Dashboard)
 
 Then run...
+
+```
+npm install
+```
 
 ```
 npm run build
@@ -64,6 +71,6 @@ Storing your token in local storage for example is a common method, but you have
 
 Another method is to store the token in a cookie (note the cookie would be used to store your token, and not to authorise a user). Unfortunately, this method has a security flaw too ([CSRF attacks](https://en.wikipedia.org/wiki/Cross-site_request_forgery)). These attacks can be resolved [several ways](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet).
 
-# Updates
+## Updates
 I plan to keep this repo update as I get feedback from others. Please report any issues or feature requests.
 
