@@ -11,7 +11,7 @@ const user = new mongoose.Schema({
     maxlength: [20, 'First name must be less than {MAXLENGTH} characters'],
     match: [
       /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-      'First name contains invalid charecters'
+      'First name contains invalid characters'
     ]
   },
   lastName: {
@@ -21,20 +21,20 @@ const user = new mongoose.Schema({
     maxlength: [20, 'Last name must be less than {MAXLENGTH} characters'],
     match: [
       /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/,
-      'Last name contains invalid charecters'
+      'Last name contains invalid characters'
     ]
   },
-  email: {
+  username: {
     type: String,
     trim: true,
     lowercase: true,
     unique: true,
-    required: [true, 'Email address is required'],
-    minlength: [3, 'Email address must be at least {MINLENGTH} characters'],
-    maxlength: [254, 'Email address must be less than {MAXLENGTH} characters'],
+    required: [true, 'Username is required'],
+    minlength: [4, 'Username must be at least {MINLENGTH} characters'],
+    maxlength: [16, 'Username must be less than {MAXLENGTH} characters'],
     match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Invalid email address provided'
+      /^[0-9a-zA-Z]+$/,
+      'Username contains invalid characters'
     ]
   },
   password: {
@@ -89,7 +89,7 @@ user.pre('save', async function(next) {
 // =====================
 user.post('save', function(error, doc, next) {
   if (error.code == 11000) {
-    next({ code: 403, message: 'This email address is already registered' });
+    next({ code: 403, message: 'This username is not available' });
   }
 
   const errors = Object.keys(error.errors).map(key => {

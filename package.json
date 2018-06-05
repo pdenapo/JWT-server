@@ -7,19 +7,18 @@
     "url": "https://github.com/anthonycook/JWT-server"
   },
   "dependencies": {
-    "bcrypt": "^1.0.3",
-    "body-parser": "^1.18.2",
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.2.0",
-    "mongoose": "^5.0.11",
-    "npm": "^5.8.0"
+    "jsonwebtoken": "^8.2.2",
+    "mongoose": "^5.1.4"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1",
+    "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "prettier": "^1.11.1"
+    "prettier": "^1.13.4"
   },
   "scripts": {
     "dev": "node -r dotenv/config ./src/index.js",

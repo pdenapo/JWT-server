@@ -18,7 +18,7 @@ router.get('/user', checkAuth, async (req, res, next) => {
     res.status(200).json({
       firstName: user.firstName,
       lastName: user.lastName,
-      email: user.email
+      username: user.username
     });
   } catch (error) {
     return next(error);

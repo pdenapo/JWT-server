@@ -12,7 +12,7 @@ const User = require('../models/user');
 // ==============================================
 router.post('/login', async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ username: req.body.username });
 
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
